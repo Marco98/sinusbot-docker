@@ -2,7 +2,7 @@
 
 set -e
 
-SINUSBOT_VERSION="1.0.0-beta.16-ba60e37"
+SINUSBOT_VERSION="1.0.1-amd64"
 
 case "$1" in
 
@@ -18,9 +18,8 @@ case "$1" in
 	;;
 "text-to-speech")
 	echo "Installing Text-to-Speech..."
-	cd tts
-	mkdir tmp
-	cd tmp
+	mkdir -p tts/tmp
+	cd tts/tmp
 	curl -s https://chromium.googlesource.com/chromiumos/platform/assets/+archive/master/speech_synthesis/patts.tar.gz | tar -xz
 	unzip -q tts_service_x86_64.nexe.zip
 
@@ -28,9 +27,8 @@ case "$1" in
 	mv voice_lstm_en-US.zvoice ..
 	mv voice_lstm_de-DE.zvoice ..
 
-	cd ..
-	rm -rf tmp
-	cd ..
+	cd ../..
+	rm -rf tts/tmp
 
 	cat <<EOT >> config.ini.configured
 [TTS]

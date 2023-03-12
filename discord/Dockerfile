@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM docker.io/debian:buster-slim
 
 LABEL description="SinusBot - Discord only image"
 LABEL version="1.0.0-beta.16-ba60e37"
